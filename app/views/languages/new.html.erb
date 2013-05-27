@@ -1,12 +1,3 @@
-<h2>Add new language <span class="desc">e.g. pl, polish</span></h2>
+<h2 class="bg">Add new language <span class="desc">e.g. pl, polish</span></h2>
 
-<%= form_for Language.new do |f| %>
-<p>
-	<%= f.text_field :short, :placeholder => "short code", :size => 15 %>
-	<%= f.text_field :name, :placeholder => "language name" %>
-	<%= f.submit "Add language" %>
-</p>
-
-	
-<% end %>
-
+<%= render 'form' %>

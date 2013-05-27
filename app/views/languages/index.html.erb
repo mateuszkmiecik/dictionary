@@ -1,13 +1,20 @@
 <% content_for :css do %>
-#header .utils {
-	display: none;
-}
 <% end -%>
 
 <% if @languages.empty? %>
 	<%= render :partial => "nolang" %>
 <% elsif @languages.length == 1 %>
 	<%= render :partial => "onelang" %>
-<% else %>
-	<%= render :partial => "dictionaries" %>
 <% end %>
+
+
+
+<div class="half">
+	<h2>Languages</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, soluta, qui, adipisci, vel pariatur sed mollitia nihil illo nemo ullam dolorum dolores est. Ea, dolore necessitatibus reprehenderit quas nemo minus.</p>
+</div>
+
+<div class="half">
+	<h2>Dictionaries</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa beatae aperiam est cumque voluptas officiis consequuntur. Aut, dolorem iure quasi accusamus beatae illo commodi perspiciatis repellat explicabo voluptates in quidem.</p>
+</div>

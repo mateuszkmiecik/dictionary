@@ -5,11 +5,13 @@ class LanguagesController < ApplicationController
   end
 
   def new
-
+    @language = Language.new
   end
 
   def create
-  	if Language.create params[:language]
+    @language = Language.new(params[:language])
+
+  	if @language.save
   		redirect_to root_path
   	else
   		render action: 'new'

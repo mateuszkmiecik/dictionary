@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dictionary</title>
+  <title>Dictionario</title>
   <%= stylesheet_link_tag    "reset", "main", "application", :media => "all" %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
@@ -11,12 +12,13 @@
 </head>
 <body>
 
-	<div id="menu"><%= link_to "Home", root_path %></div>
-
 	<div id="container">
 
 		<div id="header">
-			<h1>Dictionary</h1>
+			<h1>Dictionario</h1>
+			<div class="utils">
+				<%= render :partial => '/layouts/menu' %>
+			</div>
 		</div>
 
 		<div id="content">
