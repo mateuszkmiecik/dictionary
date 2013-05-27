@@ -9,10 +9,11 @@ class LanguagesController < ApplicationController
   end
 
   def create
-
-  	Language.create params[:language]
-  	redirect_to root_path
-
+  	if Language.create params[:language]
+  		redirect_to root_path
+  	else
+  		render action: 'new'
+  	end
   end
 
 end
