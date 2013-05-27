@@ -1,0 +1,8 @@
+<% content_for :js do %>
+	<%= javascript_include_tag "main" %>
+<% end %>
+
+	<p>
+		There are no languages yet.
+		<%= link_to "Add a language", new_language_path, :class => 'right' %>
+	</p>

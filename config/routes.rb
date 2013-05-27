@@ -1,10 +1,16 @@
 Dicto::Application.routes.draw do
 
-  get "words/index"
+  root :to => "languages#index"
 
-  root :to => "words#index"
+  resources :languages
 
-  resources :words
+  scope '/:from/:to' do
+    resources :words do
+      resources :translations
+    end
+  end
+
+  match "/:from/:to" => redirect("/%{from}/%{to}/words")
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
