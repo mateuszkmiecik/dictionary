@@ -1,6 +1,6 @@
 Dicto::Application.routes.draw do
 
-  root :to => "languages#index"
+  root :to => "index#index"
 
   resources :languages
 

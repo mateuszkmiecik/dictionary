@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526163342) do
+ActiveRecord::Schema.define(:version => 20130529131950) do
+
+  create_table "dictionaries", :force => true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "languages", :force => true do |t|
     t.string   "short"

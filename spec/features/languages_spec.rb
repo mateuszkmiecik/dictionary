@@ -14,7 +14,7 @@ describe "Languages" do
       @language = Language.create :short => 'pl', :name => 'polish'
 
       visit root_path
-      page.should have_content "You have to specify one more language to create your dictionary."
+      page.should have_content "You have to specify one more language to create dictionary."
 
     end
 
@@ -38,8 +38,8 @@ describe "Languages" do
 
     	click_button "Add language"
 
-    	current_path.should == root_path
-      	page.should have_content "You have to specify one more language to create your dictionary."
+    	current_path.should == languages_path
+      	page.should have_content "polish"
 
     end
 
@@ -68,5 +68,21 @@ describe "Languages" do
       current_path.should == languages_path
       page.should have_content "Name can't be blank"
     end
+  end
+
+  describe "DELETE /languages" do
+
+    it "should delete a language" do
+
+      @language = Language.create :short => 'pl', :name => 'polish'
+
+      visit languages_path
+      click_link "delete_#{@language.id}"
+
+      page.should have_content "Language has been deleted"
+      page.should_not have_content "polish"
+
+    end
+
   end
 end

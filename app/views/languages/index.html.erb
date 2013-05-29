@@ -1,20 +1,54 @@
 <% content_for :css do %>
 <% end -%>
 
-<% if @languages.empty? %>
-	<%= render :partial => "nolang" %>
-<% elsif @languages.length == 1 %>
-	<%= render :partial => "onelang" %>
-<% end %>
+
+<!-- <div class="row">
+	<div class="half">
+		<h3>Left</h3>
+	</div>
+
+	<div class="half">
+		<h3>Right</h3>
+	</div>
+</div> -->
+
+<div class="row">
+	<div>
+		<h3>Languages <%= link_to "Add language", new_language_path, :class => 'right' %></h3>
 
 
+			<% flash.each do |name, message| %>
+				<div id="flash_<%= name %>">
+					<i class="icon-info icon-2x icon-muted"></i>
 
-<div class="half">
-	<h2>Languages</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, soluta, qui, adipisci, vel pariatur sed mollitia nihil illo nemo ullam dolorum dolores est. Ea, dolore necessitatibus reprehenderit quas nemo minus.</p>
-</div>
+					<%= message %>
 
-<div class="half">
-	<h2>Dictionaries</h2>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa beatae aperiam est cumque voluptas officiis consequuntur. Aut, dolorem iure quasi accusamus beatae illo commodi perspiciatis repellat explicabo voluptates in quidem.</p>
+					<a href="#" id="close_notice" class="icon-remove"></a>
+				</div>
+			<% end %>
+
+		<% if @languages.empty? %>
+			<p>No languages found.</p>
+		<% else %>
+		
+			<ul class="table">
+				<li class="header">
+					<span class="short">short code</span>
+					<span>language name</span>
+					<span class="right">actions</span>
+				</li>
+			<% @languages.each_with_index do |lang, index| %>
+				<li>
+					<span class="short"><%= lang.short %></span>
+					<span><%= lang.name %></span>
+					<span class="right">
+						<a href="#"><i class="icon-pencil"></i></a>
+						<%= link_to ' ', lang, :method => 'delete', :id => 'delete_'+ lang.id.to_s , :class => 'icon-trash' %>
+					</span>
+				</li>
+			<% end %>
+			</ul>
+		<% end %>
+
+	</div>
 </div>
