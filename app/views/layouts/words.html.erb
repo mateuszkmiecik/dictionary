@@ -4,7 +4,7 @@
   <title>Dictionario</title>
   <%= stylesheet_link_tag    "reset", "main", "application", :media => "all" %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", "main" %>
   <%= csrf_meta_tags %>
 
   <%= yield :js %>
@@ -16,12 +16,21 @@
 
 		<div id="header">
 			<h1>Dictionario</h1>
+
 			<div class="utils">
+				<input type="text" placeholder="Search" />
 				<%= render :partial => '/layouts/menu' %>
 			</div>
 		</div>
 
 		<div id="content">
+
+			<% 
+				from = Language.where(:short => params[:from]).limit(1)[0].name
+				to = Language.where(:short => params[:to]).limit(1)[0].name
+			%>
+
+			<h3><%= from %> &#x2192; <%= to %> <a href="#" class="right">Add new word</a></h3>
 			<%= yield %>
 		</div>
 	</div>

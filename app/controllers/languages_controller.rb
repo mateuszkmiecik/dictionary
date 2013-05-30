@@ -18,11 +18,25 @@ class LanguagesController < ApplicationController
   	end
   end
 
-  def destroy
+  def edit
+    @language = Language.find(params[:id])    
+  end
 
-    Language.destroy params[:id]
-    redirect_to :back, :notice => 'Language has been deleted.'
+  def update
+
+    @language = Language.find(params[:id])
+
+    if @language.update_attributes params[:language]
+      redirect_to languages_path, :notice => 'Language has been updated.'
+    else
+      render :action => 'edit'
+    end
     
+  end
+
+  def destroy
+    Language.destroy params[:id]
+    redirect_to :back, :notice => 'Language has been deleted.'    
   end
 
 end

@@ -1,0 +1,91 @@
+<% content_for :js do %>
+	<%= javascript_tag do %>
+
+	$(function(){
+		
+		$('#dictionaries-list').sortable({
+			items: "li.drag",
+			handle: '.handle',
+			opacity: 0.7,
+			update: function(){
+				$.ajax({
+
+					type: 'post',
+					data: $('#dictionaries-list').sortable('serialize'),
+					dataType: 'script',
+					complete: function(request){
+						$('#dictionaries-list').effect('highlight');
+					},
+					url: '/dictionaries/sort'
+				})
+			}
+		});
+
+		$('li.ui-state-disabled').disableSelection();
+
+	});
+
+	<% end %>
+<% end %>
+
+<% if @languages.empty? %>
+	<%= render :partial => "nolang" %>
+<% elsif @languages.length == 1 %>
+	<%= render :partial => "onelang" %>
+<% end %>
+
+
+<div class="row">
+	<div>
+
+		<h3>Dictionaries
+			<% if @languages.length > 1 %>
+				<%= link_to 'Create new dictionary', new_dictionary_path, :class => 'right' %>
+			<% end %>
+		</h3>
+
+			<% flash.each do |name, message| %>
+				<div id="flash_<%= name %>">
+					<i class="icon-info icon-2x icon-muted"></i>
+
+					<%= message %>
+
+					<a href="#" id="close_notice" class="icon-remove"></a>
+				</div>
+			<% end %>
+
+		<% if @dictionaries.empty? %>
+			<p>No dictionaries found.</p>
+		<% else %>
+
+		<ul class="table" id="dictionaries-list">
+			
+			<li class="header">
+				<span>dictionary</span>
+				<span class="right">actions</span>
+			</li>
+			<% @dictionaries.each do |d| %>
+			<li id="dictionary_<%= d.id %>" class="drag">
+				<%
+					from = Language.find(d.from)
+					to = Language.find(d.to)
+				%>
+				<span><%= from.name %> &#x2192; <%= to.name %></span>
+				<span class="right">
+
+					<%= link_to ' ', '/'+ from.short + '/' + to.short + '/words', :class => 'icon-search' %>
+
+					<a href="#" class="icon-sort handle"></a>
+
+					<!-- <%= link_to ' ', d, :method => :delete, :class => 'icon-trash', :id => 'delete_'+d.id.to_s %> -->
+					<%= link_to ' ', delete_dictionary_path(d), :class => 'icon-trash', :id => 'delete_' + d.id.to_s %> 
+				</span>
+			</li>
+
+			<% end %>
+		</ul>
+
+		<% end %>
+
+	</div>
+</div>

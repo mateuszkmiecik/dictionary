@@ -1,0 +1,10 @@
+<h2>Are you sure?</h2>
+
+<p>
+	This will destroy both dictionaries:
+	<b><%= @from %> &#x2192; <%= @to %></b> and
+	<b><%= @to %> &#x2192; <%= @from %></b>.</p>
+<p>
+	<%= link_to 'Yes, i want to delete them', @dictionary, :method => :delete, :id => 'confirm_deletion' %>
+	<%= link_to "No, i want to come back.", :back, :class => 'no-style' %>
+</p>

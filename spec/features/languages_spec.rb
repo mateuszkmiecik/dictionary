@@ -85,4 +85,44 @@ describe "Languages" do
     end
 
   end
+
+
+
+  describe "PUT /languages" do
+
+    it "should update a language" do
+
+      @language = Language.create :short => 'pl', :name => 'polish'
+
+      visit languages_path
+      click_link "edit_#{@language.id}"
+
+      current_path.should == edit_language_path(@language)
+
+      find_field('language_name').value == "polish"
+
+      fill_in "language_short", :with => 'en'
+      fill_in "language_name", :with => 'english'
+
+      click_button "Update language"
+
+      current_path.should == languages_path
+
+      page.should have_content "Language has been updated"
+      page.should have_content "english"
+
+    end
+
+    it "should not update language with an empty name" do
+
+      @language = Language.create :short => 'pl', :name => 'polish'
+
+      visit languages_path
+      click_link "edit_#{@language.id}"
+      
+    end
+
+  end
+
+  
 end

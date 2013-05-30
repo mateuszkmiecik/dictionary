@@ -1,17 +1,6 @@
 <% content_for :css do %>
 <% end -%>
 
-
-<!-- <div class="row">
-	<div class="half">
-		<h3>Left</h3>
-	</div>
-
-	<div class="half">
-		<h3>Right</h3>
-	</div>
-</div> -->
-
 <div class="row">
 	<div>
 		<h3>Languages <%= link_to "Add language", new_language_path, :class => 'right' %></h3>
@@ -42,7 +31,7 @@
 					<span class="short"><%= lang.short %></span>
 					<span><%= lang.name %></span>
 					<span class="right">
-						<a href="#"><i class="icon-pencil"></i></a>
+						<%= link_to ' ', edit_language_path(lang), :id => 'edit_'+ lang.id.to_s , :class => 'icon-pencil' %>
 						<%= link_to ' ', lang, :method => 'delete', :id => 'delete_'+ lang.id.to_s , :class => 'icon-trash' %>
 					</span>
 				</li>

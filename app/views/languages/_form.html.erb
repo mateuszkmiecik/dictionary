@@ -2,9 +2,15 @@
 
 	<%= f.text_field :short, :placeholder => "short code", :size => 15 %>
 	<%= f.text_field :name, :placeholder => "language name" %>
-	<%= f.submit "Add language" %>
+  <% if params[:action] == ( 'edit') || params[:action] == 'update' %>
+    <%= f.submit "Update language" %>
+  <% else %>
+    <%= f.submit "Add language" %>  
+  <% end %>
 	
 <% end %>
+
+<p>Remember, short code of language must be unique.</p>
 
   <% if @language.errors.any? %>
     <div id="error_explanation">

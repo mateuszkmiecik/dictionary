@@ -13,6 +13,10 @@ body {
 	border-top: 15px solid $green;
 }
 
+li {
+	list-style: none;
+}
+
 #container {
 	width: 760px;
 	margin: 0 auto;
@@ -266,6 +270,25 @@ div.word span {
 	cursor: pointer;
 }
 
+#content a.no-style {
+	background: transparent;
+	padding: 0;
+	border-radius: 0;
+	margin-left: 20px;
+	text-transform: none;
+	font-size: 0.7em;
+	font-weight: normal;
+	color: #555;
+	border-bottom: 1px solid #555;
+
+
+	&:hover {
+		background: transparent;
+		color: $green;
+		border: 0;
+	}
+}
+
 #content a.right {
 	float: right;
 }
@@ -282,6 +305,28 @@ div.word span {
 		border-radius: 5px;
 		padding: 0 10px;
 		outline: none;
+	}
+
+	select {
+		height: 30px;
+		width: 120px;
+		margin-right: 10px;
+		padding: 0 5px;
+		outline: none;
+		color: #aaa;
+
+		border-radius: 5px;
+		background: #fff;
+		border: 1px solid #ccc;
+
+		&:focus {
+			border-color: #555;
+			color: #000;
+		}
+
+		&.margin-left {
+			margin-left: 10px;
+		}
 	}
 }
 
@@ -373,7 +418,7 @@ div#error_explanation {
 	li {
 		height: 50px;
 		line-height: 50px;
-		border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid #ddd;
 		background: #fafafa;
 
 		&.header {
@@ -381,7 +426,7 @@ div#error_explanation {
 			line-height: 25px;
 			background: lighten($green, 20%);
 			border-color: lighten($green, 10%);
-			color: #f4f4f4;
+			color: #fafafa;
 			font-size: 0.7em;
 			font-weight: bold;
 			text-transform: uppercase;

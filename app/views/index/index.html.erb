@@ -7,17 +7,6 @@
 	<%= render :partial => "onelang" %>
 <% end %>
 
-
-<!-- <div class="row">
-	<div class="half">
-		<h3>Left</h3>
-	</div>
-
-	<div class="half">
-		<h3>Right</h3>
-	</div>
-</div> -->
-
 <div class="row">
 	<div class="third">
 		<h3>Languages <%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %></h3>
@@ -29,7 +18,11 @@
 	</div>
 
 	<div class="two-thirds">
-		<h3>Dictionaries <%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %></h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, modi, distinctio, iusto ipsum quos deleniti omnis nesciunt in et maxime id asperiores sit cupiditate voluptate ut aliquid voluptatum dolor optio!</p>
+		<h3>Dictionaries <%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %></h3>
+		<% if @dictionaries.empty? %>
+			<p>No dictionaries found.</p>
+		<% else %>
+			<p><%= pluralize(@dictionaries.count, 'dictionary') %> found.</p>
+		<% end %>
 	</div>
 </div>

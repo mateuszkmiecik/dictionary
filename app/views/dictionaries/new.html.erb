@@ -1,0 +1,25 @@
+<h2 class="bg">Add dictionary</h2>
+
+<%= form_for @dictionary do |f| %>
+
+	<%= collection_select('dictionary', 'from', @languages, 'id', 'name', {}) %>
+	&#8644;
+	<%= collection_select('dictionary', 'to', @languages, 'id', 'name', {}, {:class => 'margin-left'}) %>
+
+	<%= f.submit %>
+
+<% end %>
+
+
+<p>You don't have to create two dictionaries, just one is enough, it will provide translations for both sides.</p>
+
+ <% if @dictionary.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@dictionary.errors.count, "error") %> prohibited new dictionary from being saved:</p>
+      <ul>
+      <% @dictionary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>

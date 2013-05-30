@@ -4,6 +4,11 @@ Dicto::Application.routes.draw do
 
   resources :languages
 
+  resources :dictionaries do
+    post :sort, :on => :collection
+    get :delete, :on => :member
+  end
+
   scope '/:from/:to' do
     resources :words do
       resources :translations
