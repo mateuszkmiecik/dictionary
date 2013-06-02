@@ -20,7 +20,7 @@
 
 		<% end %>
 		<% @translations.each do |t| %>
-			<%= debug t %>
+			<%= render :partial => 'words/single', :locals => { :word => t.word } %>
 		<% end %>
 	</div>
 </div>

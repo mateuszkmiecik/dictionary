@@ -55,8 +55,6 @@ class TranslationsController < ApplicationController
 
 		@translation.destroy
 		redirect_to word_path(:id => @word.id), :notice => 'Translation has been deleted.'
-
-
 	end
 
 end
