@@ -1,1 +1,25 @@
+<div class="row">
+	<div>
+		
+		<h3><%= link_to '', '/'+@to.short+'/'+@from.short, :class => 'icon-exchange pushed-out', :title => 'switch languages' %>
+			<%= @from.name %> &#x2192; <%= @to.name %>
+			
+			<%= link_to "Add new word", new_word_path, :class => 'right' %>
+		</h3>
 
+			<% flash.each do |name, message| %>
+				<div id="flash_<%= name %>">
+					<i class="icon-info icon-2x icon-muted"></i>
+
+					<%= message %>
+
+					<a href="#" id="close_notice" class="icon-remove"></a>
+				</div>
+			<% end %>
+
+	</div>
+</div>
+
+<% @words.each do |w| %>
+	<%= render :partial => 'single', :locals => { :word => w } %>
+<% end %>

@@ -1,3 +1,6 @@
+<div class="row">
+  <div>
+
 <h2 class="bg">Add dictionary</h2>
 
 <%= form_for @dictionary do |f| %>
@@ -11,15 +14,28 @@
 <% end %>
 
 
-<p>You don't have to create two dictionaries, just one is enough, it will provide translations for both sides.</p>
+<p>You don't have to create two dictionaries, this will create two dictionaries: <br />
+ eg. <i>english&#x2192;polish</i> and <i>polish&#x2192;english</i>.</p>
 
  <% if @dictionary.errors.any? %>
     <div id="error_explanation">
       <p><%= pluralize(@dictionary.errors.count, "error") %> prohibited new dictionary from being saved:</p>
       <ul>
       <% @dictionary.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <%
+          # yes, i know, this solution quite sucks
+          # it was hard to figure out how to show custom messages without attribute's name
+
+          if msg == 'From has already been taken'
+        %>
+          <li>Specified dictionary exists.</li>
+        <% else %>
+          <li><%= msg %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>
   <% end %>
+
+  </div>
+</div>

@@ -91,6 +91,7 @@ li {
 			background: $green;
 			overflow: hidden;
 			visibility: hidden;
+			z-index: 2000;
 			opacity: 0;
 			transition: 0.2s linear;
 
@@ -177,32 +178,111 @@ h1 {
 	}
 }
 
-#content div.wordrow {
-	border-bottom: 1px solid #f4f4f4;
-	height: 60px;
-	line-height: 60px;
-}
+/*  WORDS  */
 
 #content div.word {
-	text-align: right;
-	float: left;
-	width: 50%;
+	text-align: center;
 	font-family: 'Andada', serif;
 	font-weight: bold;
 	font-size: 1.1em;
+	position: relative;
+
+	&.normal {
+		font-family: 'Open Sans', sans-serif;
+		font-weight: normal;
+		font-size: 1em;
+	}
+
+	a {
+		color: lighten($green, 10%);
+		text-decoration: none;
+
+		&:hover {
+			color: $green;
+		}
+	}
+
+	.word_action {
+		position: absolute;
+		left: 20px;
+		line-height: 28px;
+		font-size: 0.7em;
+
+		i {
+			padding: 3px 5px;
+			background: #fff;
+		}
+
+		a {
+			background: #eee;
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			text-decoration: none;
+			vertical-align: middle;
+			text-align: center;
+			border-radius: 50%;
+			color: #222;
+			margin-left: 5px;
+			box-shadow: inset 0 0 0 transparent;
+			transition: box-shadow 0.1s linear;
+
+			&:hover {
+				background: #fff; // lighten($green, 30%);
+				box-shadow: inset 0 0 0 2px lighten($green, 20%);
+			}
+		}
+	}
 }
 
-div.word span {
-	padding-right: 20px;
-}
+#content div.wordrow {
+	background: #eee;
+	border-top: 1px solid #ddd;
+	position: relative;
 
-#content div.translation {
-	text-indent: 20px;
-	font-size: 0.9em;
-	line-height: 62px;
+	&:nth-child(odd) {
+		background: #fff;
+		a.show_link {
+			background: #eee;
+			box-shadow: 0 0 0 0 transparent inset;
+		}
+	}
+
+	a.show_link {
+		display: block;
+		position: absolute;
+		top: 19px;
+		right: 20px;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		border-radius: 15px;
+		text-align: center;
+		background: #fff;
+		font-weight: bold;
+		display: none;
+		color: #000;
+		box-shadow: 0 0 0 0 transparent inset;
+		transition: box-shadow 0.1s linear;
+
+		&:hover {
+			box-shadow: inset 0 0 0 2px lighten($green, 20%);
+		}
+	}
+
+	&:hover {
+		a.show_link {
+			display: block;
+		}
+	}
 }
 
 /*  Headers  */
+
+#content h2, #content h3 {
+	position: relative;
+}
 
 
 #content h2 {
@@ -291,6 +371,36 @@ div.word span {
 
 #content a.right {
 	float: right;
+	margin-left: 10px;
+}
+
+#content a.pushed-out {
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -12px;
+	left: -30px;
+
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 0.6em;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	background: #eee;
+	color: #666;
+	border-radius: 15px;
+	box-shadow: 0 0 0 0 transparent inset;
+	transition: box-shadow 0.1s linear;
+
+	&:hover {
+		box-shadow: inset 0 0 0 2px lighten($green, 20%);
+		background: #fff;
+		color: $green;
+	}
+
 }
 
 
@@ -300,11 +410,13 @@ div.word span {
 	padding: 20px;
 
 	input {
-		border: 1px solid #eee;
+		border: 1px solid #ddd;
 		height: 30px;
+		width: 200px;
 		border-radius: 5px;
 		padding: 0 10px;
 		outline: none;
+		font-family: 'Open Sans', sans-serif;
 	}
 
 	select {
@@ -328,6 +440,24 @@ div.word span {
 			margin-left: 10px;
 		}
 	}
+
+	textarea {
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin: 0;
+		padding: 5px 10px;
+		display: block;
+		height: 100px;
+		font-family: 'Open Sans', sans-serif;
+		outline: none;
+		resize: none;
+		width: 300px;
+
+		&:focus {
+			border-color: #aaa;
+			box-shadow: 0 0 5px lighten($green, 30%);
+		}
+	}
 }
 
 #content input[type="submit"] {
@@ -336,6 +466,7 @@ div.word span {
 
 #content form input:focus {
 	border-color: #aaa;
+	box-shadow: 0 0 5px lighten($green, 30%);
 }
 
 #content .desc {
@@ -379,7 +510,8 @@ div#error_explanation {
 
 #content div.row {
 	clear: both;
-	padding-top: 20px;
+	padding: 20px 0;
+	border-bottom: 1px solid #eee;
 }
 
 
@@ -403,6 +535,36 @@ div#error_explanation {
 #content div.two-thirds {
 	float: left;
 	width: 490px;
+}
+
+#content div.word {
+	float: left;
+	width: 380px;
+}
+
+#content div.translations {
+	margin-left: 380px;
+	padding-right: 50px;
+
+	form {
+		padding: 0;
+
+		input, textarea {
+			margin-bottom: 10px;
+		}
+	}
+
+	
+	.translation {
+		.action {
+			margin-left: 10px;
+			display: none;
+		}
+
+		&:hover {
+			.action { display: inline; }
+		}
+	}
 }
 
 /*  tables  */
@@ -463,9 +625,12 @@ div#error_explanation {
 			border-radius: 50%;
 			color: #222;
 			margin-left: 5px;
+			box-shadow: inset 0 0 0 transparent;
+			transition: box-shadow 0.1s linear;
 
 			&:hover {
-				background: lighten($green, 30%);
+				background: #fff; // lighten($green, 30%);
+				box-shadow: inset 0 0 0 2px lighten($green, 20%);
 			}
 		}
 

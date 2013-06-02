@@ -11,7 +11,7 @@ Dicto::Application.routes.draw do
 
   scope '/:from/:to' do
     resources :words do
-      resources :translations
+      resources :translations, :only => [:new, :create, :destroy]
     end
   end
 

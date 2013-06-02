@@ -1,0 +1,39 @@
+<div class="row wordrow">
+	<div class="word">
+		<% if params[:action] == 'index' %>
+			<%= link_to word.text, word_path(:id => word.id) %>
+		<% else %>
+			<div class="word_action">
+				<a href="#" class="icon-pencil"></a>
+				<a href="#" class="icon-trash"></a>
+			</div>
+
+			<%= word.text %>
+		<% end %>
+	</div>
+
+	<div class="translations">
+		<% if word.translations.where(:lang_id => @to.id).empty? %>
+			<div><span class="desc">No translations yet.</span></div>
+		<% else %>
+			<% word.translations.where(:lang_id => @to.id).each do |t| %>
+					<div class="translation">
+						<%= t.text %>
+						<span class="desc">
+							<%= t.desc %>
+							<% if params[:action] == 'show' %>
+							<span class="action">
+								<a href="#" class="icon-pencil"></a>
+								<a href="#" class="icon-trash"></a>
+							</span>
+							<% end %>
+						</span>
+					</div>
+			<% end %>
+		<% end %>
+	</div>
+
+		<% if params[:action] == 'index' %>
+			<%= link_to ' ', word_path(:id => word.id), :class => 'show_link icon-angle-right' %>
+		<% end %>
+</div>

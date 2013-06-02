@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="row">
-	<div class="third">
+	<div class=" ">
 		<h3>Languages <%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %></h3>
 		<% if @languages.empty? %>
 			<p>No languages found.</p>
@@ -17,12 +17,12 @@
 		<% end %>
 	</div>
 
-	<div class="two-thirds">
-		<h3>Dictionaries <%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %></h3>
+	<div class=" ">
+		<h3>Dictionaries <%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %> <span class="desc">
 		<% if @dictionaries.empty? %>
-			<p>No dictionaries found.</p>
+			No dictionaries found.
 		<% else %>
-			<p><%= pluralize(@dictionaries.count, 'dictionary') %> found.</p>
-		<% end %>
+			<%= pluralize(@dictionaries.count, 'dictionary') %> found.
+		<% end %></span></h3>
 	</div>
 </div>

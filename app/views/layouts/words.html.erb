@@ -24,13 +24,6 @@
 		</div>
 
 		<div id="content">
-
-			<% 
-				from = Language.where(:short => params[:from]).limit(1)[0].name
-				to = Language.where(:short => params[:to]).limit(1)[0].name
-			%>
-
-			<h3><%= from %> &#x2192; <%= to %> <a href="#" class="right">Add new word</a></h3>
 			<%= yield %>
 		</div>
 	</div>

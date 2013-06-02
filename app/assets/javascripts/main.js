@@ -17,5 +17,15 @@ $(function(){
 		setTimeout(noticeClose, 3000);
 	}
 
+	$('#menuicon').click(function(e){ e.preventDefault(); });
+
+
+	$('.field_with_errors input').focus(function(){
+		if( $(this).parent().is('div.field_with_errors')){
+			$(this).unwrap();
+			$(this).focus();
+		}
+	});
+
 	
 });

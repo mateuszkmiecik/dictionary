@@ -44,7 +44,7 @@ describe "Dictionaries" do
 
   	end
 
-    it "should prevent from saving languages if languages are the same" do
+    it "should prevent from saving dictionaries if languages are the same" do
 
       visit new_dictionary_path
       select "german", :from => 'dictionary_from'
@@ -54,6 +54,25 @@ describe "Dictionaries" do
       current_path.should == dictionaries_path
 
       page.should have_content 'Languages cannot be the same.'
+    end
+
+    it "should prevent from saving doctionaries if specified dictionary exists" do
+
+      visit new_dictionary_path
+
+      select "german", :from => 'dictionary_from'
+      select "polish", :from => 'dictionary_to'
+
+      click_button "Create Dictionary"
+
+      visit new_dictionary_path
+      select "polish", :from => 'dictionary_from'
+      select "german", :from => 'dictionary_to'
+
+      click_button "Create Dictionary"
+
+      page.should have_content "Specified dictionary exists."
+
     end
 
   end
