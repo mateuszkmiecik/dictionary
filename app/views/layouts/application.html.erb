@@ -15,15 +15,44 @@
 	<div id="container">
 
 		<div id="header">
-			<h1>Dictionario</h1>
+			<h1><%=link_to 'Dictionario', root_path %></h1>
 
 			<div class="utils">
+				<% if params[:controller] == 'words' %>
+					<input type="text" placeholder="Search" />
+				<% end %>
 				<%= render :partial => '/layouts/menu' %>
 			</div>
 		</div>
 
 		<div id="content">
 			<%= yield %>
+		</div>
+
+		<%
+			dictos = Dictionary.all
+			langs = Language.all
+		%>
+
+		<div id="footer">
+			<div class="left">
+				<%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %>
+				<% if dictos.empty? %>
+					No dictionaries found.
+				<% else %>
+					<%= pluralize(dictos.count, 'dictionary') %> found.
+				<% end %>
+				
+			</div>
+
+			<div class="right">
+				<% if langs.empty? %>
+					No languages found.
+				<% else %>
+					<%= pluralize(langs.count, 'language') %> found.
+				<% end %>
+				<%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %>
+			</div>
 		</div>
 	</div>
 

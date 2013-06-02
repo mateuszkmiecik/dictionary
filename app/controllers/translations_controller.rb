@@ -20,9 +20,10 @@ class TranslationsController < ApplicationController
 				w = Word.where(:lang_id => @to.id, :text => @translation.text).limit(1)[0]
 			end
 		
-
-			t = Translation.create :lang_id => @from.id, :word_id => w.id, :text => @word.text, :desc => @translation.desc
-			t.save
+			if !Translation.where(:lang_id => @from.id, :word_id => w.id, :text => @word.text).exists?
+				t = Translation.create :lang_id => @from.id, :word_id => w.id, :text => @word.text, :desc => @translation.desc
+				t.save
+			end
 
 			# redirect
 			redirect_to word_path(:id => params[:word_id]), :notice => 'Translation has been added.'

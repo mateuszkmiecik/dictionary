@@ -2,10 +2,10 @@
 	<div class="word">
 		<% if params[:action] == 'index' %>
 			<%= link_to word.text, word_path(:id => word.id) %>
-		<% elsif params[:action] == 'show' %>
+		<% elsif params[:action] != 'index' %>
 			<div class="word_action">
 				<%= link_to ' ', edit_word_path(:id => word.id), :class => 'icon-pencil' %>
-				<a href="#" class="icon-trash"></a>
+				<%= link_to ' ', word_path(:id => word.id), :method => 'delete', :class => 'icon-trash' %>
 			</div>
 
 			<%= word.text %>

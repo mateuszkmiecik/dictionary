@@ -1,5 +1,32 @@
-<% content_for :css do %>
-<% end -%>
+<% content_for :js do %>
+	<%= javascript_tag do %>
+
+	$(function(){
+		
+		$('#dictionaries-list').sortable({
+			items: "li.drag",
+			handle: '.handle',
+			opacity: 0.7,
+			update: function(){
+				$.ajax({
+
+					type: 'post',
+					data: $('#dictionaries-list').sortable('serialize'),
+					dataType: 'script',
+					complete: function(request){
+						$('#dictionaries-list').effect('highlight');
+					},
+					url: '/dictionaries/sort'
+				})
+			}
+		});
+
+		$('li.ui-state-disabled').disableSelection();
+
+	});
+
+	<% end %>
+<% end %>
 
 <% if @languages.empty? %>
 	<%= render :partial => "nolang" %>
@@ -8,21 +35,32 @@
 <% end %>
 
 <div class="row">
-	<div class=" ">
-		<h3>Languages <%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %></h3>
-		<% if @languages.empty? %>
-			<p>No languages found.</p>
-		<% else %>
-			<p><%= pluralize(@languages.count, 'language') %> found.</p>
-		<% end %>
-	</div>
+	<% if !@dictionaries.empty? %>
+	<h2>Choose dictionary</h2>
+	<% end %>
 
-	<div class=" ">
-		<h3>Dictionaries <%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %> <span class="desc">
-		<% if @dictionaries.empty? %>
-			No dictionaries found.
-		<% else %>
-			<%= pluralize(@dictionaries.count, 'dictionary') %> found.
-		<% end %></span></h3>
-	</div>
+	<ul class="table" id="dictionaries-list">
+			
+			<!-- <li class="header">
+				<span>dictionary</span>
+				<span class="right">actions</span>
+			</li> -->
+			<% @dictionaries.each do |d| %>
+			<li id="dictionary_<%= d.id %>" class="drag">
+				<%
+					from = Language.find(d.from)
+					to = Language.find(d.to)
+				%>
+				<span><%= from.name %> &#x2192; <%= to.name %></span>
+				<span class="right">
+
+					<%= link_to ' ', '/'+ from.short + '/' + to.short + '/words', :class => 'icon-angle-right' %>
+
+					<a href="#" class="icon-sort handle" title="move dictionary up or down"></a>
+				</span>
+			</li>
+
+			<% end %>
+		</ul>
+
 </div>

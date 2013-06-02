@@ -52,5 +52,20 @@ class WordsController < ApplicationController
       render :action => 'edit'
     end    
   end
+
+  def destroy
+
+    w = Word.find params[:id]
+    t = Translation.where(:word_id => w.id, :lang_id => @to.id)
+
+    t.each do |tr|
+      tr.destroy
+    end
+
+    Word.destroy params[:id]
+
+    redirect_to words_path, :notice => 'Word and its translation have been deleted.'
+    
+  end
   
 end

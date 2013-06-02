@@ -17,8 +17,10 @@ li {
 	list-style: none;
 }
 
+$mainwidth: 660px;
+
 #container {
-	width: 760px;
+	width: $mainwidth;
 	margin: 0 auto;
 }
 
@@ -164,6 +166,15 @@ h1 {
 	height: 150px;
 	line-height: 150px;
 	padding-left: 20px;
+
+	a {
+		color: #333;
+		text-decoration: none;
+
+		&:hover {
+			color: $green;
+		}
+	}
 }
 
 
@@ -249,6 +260,10 @@ h1 {
 		}
 	}
 
+	&:first-child {
+		border: 0;
+	}
+
 	a.show_link {
 		display: block;
 		position: absolute;
@@ -289,6 +304,7 @@ h1 {
 	padding: 10px 20px;
 	font-weight: normal;
 	font-size: 1.5em;
+	margin-bottom: 10px;
 
 	&.bg {
 		background: #eee;
@@ -512,7 +528,6 @@ div#error_explanation {
 #content div.row {
 	clear: both;
 	padding: 20px 0;
-	border-bottom: 1px solid #eee;
 }
 
 
@@ -540,11 +555,11 @@ div#error_explanation {
 
 #content div.word {
 	float: left;
-	width: 380px;
+	width: $mainwidth/2;
 }
 
 #content div.translations {
-	margin-left: 380px;
+	margin-left: $mainwidth/2;
 	padding-right: 50px;
 
 	form {
@@ -557,6 +572,7 @@ div#error_explanation {
 
 	
 	.translation {
+		text-align: center;
 		.action {
 			margin-left: 10px;
 			display: none;
@@ -672,6 +688,38 @@ div#error_explanation {
 
 		&:hover {
 			background: #888;
+		}
+	}
+}
+
+/*  footer  */
+
+#footer {
+	margin-top: 50px;
+	padding: 10px 20px;
+	font-size: 0.7em;
+	text-align: right;
+	color: #999;
+	border-top: 1px solid #eee;
+
+	.left {
+		float: left;
+	}
+
+	a.action {
+		text-decoration: none;
+		color: #999;
+		border-radius: 50%;
+		display: inline-block;
+		width: 26px;
+		height: 26px;
+		text-align: center;
+		line-height: 26px;
+		background: transparent;
+		transition: background-color 0.2s linear;
+
+		&:hover {
+			background: #eee;
 		}
 	}
 }
