@@ -16,11 +16,8 @@ class WordsController < ApplicationController
   end
 
   def index
-
     @words = Word.where(:lang_id => @from.id).order("words.text ASC")
-
   end
-
 
   def new
   	@word = Word.new  	
@@ -38,11 +35,22 @@ class WordsController < ApplicationController
   end
 
   def show
+    @word = Word.find params[:id]
+    @translation = Translation.new    
+  end
 
+  def edit
+    @word = Word.find params[:id]
+  end
+
+  def update
     @word = Word.find params[:id]
 
-    @translation = Translation.new
-    
+    if @word.update_attributes params[:word]
+      redirect_to word_path(:id => @word.id), :notice => 'Word has been updated.'
+    else
+      render :action => 'edit'
+    end    
   end
   
 end
