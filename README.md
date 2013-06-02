@@ -12,4 +12,4 @@ Written and tested in Ruby 1.9.3p194 on Rails 3.2.13
 2. run `rake db:setup`
 3. run `rails s` and use your dictionary! :)
 
-Copyrigth &copy; Mateusz Kmiecik
+Copyright &copy; Mateusz Kmiecik
