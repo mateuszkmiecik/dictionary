@@ -3,7 +3,7 @@
 
 		<h2 class="bg">Edit word</h2>
 
-		<%= form_for @word do |f| %>
+		<%= form_for @word, :url => word_path(:id => @word.id) do |f| %>
 			<%= f.hidden_field :lang_id, :value => @from.id %>
 			<%= f.text_field :text, :placeholder => 'word' %>
 			<%= f.submit "Edit word" %>
