@@ -1,8 +1,8 @@
 <div class="row wordrow">
 	<div class="word">
-		<% if params[:action] == 'index' %>
+		<% if params[:action] == 'index' || params[:action] == 'search' %>
 			<%= link_to word.text, word_path(:id => word.id) %>
-		<% elsif params[:action] != 'index' %>
+		<% else %>
 			<div class="word_action">
 				<%= link_to ' ', edit_word_path(:id => word.id), :class => 'icon-pencil' %>
 				<%= link_to ' ', word_path(:id => word.id), :method => 'delete', :class => 'icon-trash' %>
@@ -14,7 +14,7 @@
 
 	<div class="translations">
 		<% if word.translations.where(:lang_id => @to.id).empty? %>
-			<div><span class="desc">No translations yet.</span></div>
+			<div class="translation"><span class="desc">No translations yet.</span></div>
 		<% else %>
 			<% word.translations.where(:lang_id => @to.id).each do |t| %>
 					<div class="translation">
@@ -23,8 +23,8 @@
 							<%= t.desc %>
 							<% if params[:action] == 'show' %>
 							<span class="action">
-								<a href="#" class="icon-pencil"></a>
-								<a href="#" class="icon-trash"></a>
+								<%= link_to '', edit_word_translation_path(:word_id => word.id, :id => t.id), :class => 'icon-pencil' %>
+								<%= link_to '', word_translation_path(:word_id => word.id, :id => t.id), :method => 'delete', :class => 'icon-trash' %>
 							</span>
 							<% end %>
 						</span>
@@ -33,7 +33,7 @@
 		<% end %>
 	</div>
 
-		<% if params[:action] == 'index' %>
+		<% if params[:action] == 'index' || params[:action] == 'search' %>
 			<%= link_to ' ', word_path(:id => word.id), :class => 'show_link icon-angle-right' %>
 		<% end %>
 </div>

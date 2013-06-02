@@ -33,4 +33,30 @@ class TranslationsController < ApplicationController
 		
 	end
 
+	def edit
+		@word = Word.find params[:word_id]
+		@translation = Translation.find params[:id]		
+	end
+
+	def update
+		@word = Word.find params[:word_id]
+		@translation = Translation.find params[:id]
+
+		if @translation.update_attributes params[:translation]
+			redirect_to word_path(:id => @word.id), :notice => 'Translation has been updated.'
+    	else
+    		render :action => 'edit'
+    	end		
+	end
+
+	def destroy
+		@word = Word.find params[:word_id]
+		@translation = Translation.find params[:id]
+
+		@translation.destroy
+		redirect_to word_path(:id => @word.id), :notice => 'Translation has been deleted.'
+
+
+	end
+
 end

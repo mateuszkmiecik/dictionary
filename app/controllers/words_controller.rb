@@ -67,5 +67,18 @@ class WordsController < ApplicationController
     redirect_to words_path, :notice => 'Word and its translation have been deleted.'
     
   end
+
+
+  def search
+
+    if params[:search].empty?
+      redirect_to words_path
+    end
+    
+
+    @words = Word.where("text LIKE ? and lang_id = ?", "%#{params[:search]}%", @from.id)
+    @translations = Translation.where("text LIKE ? and lang_id = ?", "%#{params[:search]}%", @to.id)
+    
+  end
   
 end

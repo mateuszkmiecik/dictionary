@@ -1,0 +1,26 @@
+<div class="row">
+	<div>
+		
+		
+		<h3><%= link_to '', '/'+@to.short+'/'+@from.short, :class => 'icon-exchange pushed-out', :title => 'switch languages' %>
+			<%= @from.name %> &#x2192; <%= @to.name %>
+			
+			<%= link_to "Add new word", new_word_path, :class => 'right' %>
+		</h3>
+
+		<% @words.each do |w| %>
+			<%
+				w.translations.each do |wt|
+					if @translations.include?(wt)
+						@translations.delete_if {|x| x == wt }  
+					end
+				end
+			%>
+			<%= render :partial => 'words/single', :locals => { :word => w } %>
+
+		<% end %>
+		<% @translations.each do |t| %>
+			<%= debug t %>
+		<% end %>
+	</div>
+</div>

@@ -21,7 +21,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'kaminari'
 
 group :test, :development do
 	gem 'rspec-rails'

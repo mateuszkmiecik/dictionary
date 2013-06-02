@@ -19,7 +19,9 @@
 
 			<div class="utils">
 				<% if params[:controller] == 'words' %>
-					<input type="text" placeholder="Search" />
+					<%= form_tag search_words_path do |f| %>
+						<%= text_field_tag 'search', params[:search], :placeholder => 'Search' %>
+					<% end %>
 				<% end %>
 				<%= render :partial => '/layouts/menu' %>
 			</div>

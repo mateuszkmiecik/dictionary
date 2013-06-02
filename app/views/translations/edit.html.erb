@@ -1,0 +1,27 @@
+<div class="row">
+	<div>
+
+		<h2 class="bg">Edit translation</h2>
+
+		<%= form_for( @translation, :url => word_translation_path(:word_id => @word.id) ) do |f| %>
+
+			<%= f.hidden_field :lang_id, :value => @to.id %>
+			<%= f.hidden_field :word_id, :value => @word.id %>
+
+			<div><%= f.text_field :text, :placeholder => 'translation' %></div>
+			<div><%= f.text_area :desc, :placeholder => 'description' %></div>
+			<div><%= f.submit "Edit translation" %></div>
+
+		<% end %>
+		<% if @translation.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@translation.errors.count, "error") %> prohibited new translation from being saved:</p>
+      <ul>
+      	<% @translation.errors.each do |attr, msg| %>
+	      	<li id="error_<%= attr %>"> <%= msg %></li>
+      	<% end %>
+      </ul>
+    </div>
+  <% end %>
+	</div>
+</div>

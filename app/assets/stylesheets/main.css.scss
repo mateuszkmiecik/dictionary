@@ -137,6 +137,10 @@ $mainwidth: 660px;
 	.utils {
 		padding-right: 20px;
 
+		form {
+			display: inline;
+		}
+
 		input {
 			background: #f3f3f3;
 			border: 0;
@@ -457,6 +461,10 @@ h1 {
 		}
 	}
 
+	div {
+		margin-bottom: 5px;
+	}
+
 	textarea {
 		border: 1px solid #ccc;
 		border-radius: 5px;
@@ -575,16 +583,29 @@ div#error_explanation {
 		text-align: center;
 		.action {
 			margin-left: 10px;
-			display: none;
+			visibility: hidden;
+			font-size: 1.1em;
+			a {
+				margin-left: 5px;
+				color: #666;
+
+				&:hover {
+					color: $green;
+				}
+			}
 		}
 
 		&:hover {
-			.action { display: inline; }
+			.action { visibility: visible; }
 		}
 	}
 }
 
 /*  tables  */
+
+.handle {
+	cursor: move;
+}
 
 #content ul.table {
 	padding: 10px 0;
