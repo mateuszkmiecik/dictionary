@@ -191,7 +191,6 @@ h1 {
 
 #content p {
 	padding: 20px;
-	margin-bottom: 20px;
 
 	&.info {
 		background: #eee;
@@ -211,6 +210,7 @@ h1 {
 		font-family: 'Open Sans', sans-serif;
 		font-weight: normal;
 		font-size: 1em;
+		text-align: left;
 	}
 
 	a {
@@ -442,11 +442,15 @@ h1 {
 		padding: 0 10px;
 		outline: none;
 		font-family: 'Open Sans', sans-serif;
+
+		&.margin-left {
+			margin-left: 10px;
+		}
 	}
 
 	select {
 		height: 30px;
-		width: 120px;
+		width: 200px;
 		margin-right: 10px;
 		padding: 0 5px;
 		outline: none;
@@ -472,7 +476,7 @@ h1 {
 	}
 
 	textarea {
-		border: 1px solid #ccc;
+		border: 1px solid #ddd;
 		border-radius: 5px;
 		margin: 0;
 		padding: 5px 10px;
@@ -493,6 +497,10 @@ h1 {
 #content input[type="submit"] {
 	border: 0;
 	width: auto;
+}
+
+#content input[type="file"] {
+	padding-top: 8px;
 }
 
 #content form input:focus {
@@ -751,6 +759,8 @@ div#error_explanation {
 		}
 	}
 }
+
+/*  additional styles  */
 
 p.center_info {
 	text-align: center;

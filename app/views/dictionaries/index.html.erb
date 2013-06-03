@@ -42,10 +42,7 @@
 				%>
 				<span><%= from.name %> &#x2192; <%= to.name %></span>
 				<span class="right">
-
 					<%= link_to ' ', '/'+ from.short + '/' + to.short + '/words', :class => 'icon-angle-right' %>
-
-					<!-- <%= link_to ' ', d, :method => :delete, :class => 'icon-trash', :id => 'delete_'+d.id.to_s %> -->
 					<%= link_to ' ', delete_dictionary_path(d), :class => 'icon-trash', :id => 'delete_' + d.id.to_s %> 
 				</span>
 			</li>

@@ -1,8 +1,7 @@
 <% content_for :js do %>
 	<%= javascript_tag do %>
 
-	$(function(){
-		
+	$(function(){		
 		$('#dictionaries-list').sortable({
 			items: "li.drag",
 			handle: '.handle',
@@ -20,9 +19,7 @@
 				})
 			}
 		});
-
 		$('li.ui-state-disabled').disableSelection();
-
 	});
 
 	<% end %>
@@ -39,11 +36,7 @@
 	<h2>Choose dictionary</h2>
 
 	<ul class="table" id="dictionaries-list">
-			
-			<!-- <li class="header">
-				<span>dictionary</span>
-				<span class="right">actions</span>
-			</li> -->
+
 			<% @dictionaries.each do |d| %>
 			<li id="dictionary_<%= d.id %>" class="drag">
 				<%

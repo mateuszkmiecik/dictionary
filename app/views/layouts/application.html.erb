@@ -6,10 +6,6 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <%= javascript_include_tag "application", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", "main" %>
   <%= csrf_meta_tags %>
-  <% if params[:controller] == 'words' %>
-  	<%= #javascript_include_tag "search"
-  	%>
-  <% end %>
 
   <%= yield :js %>
   <style type="text/css"><%= yield :css %></style>

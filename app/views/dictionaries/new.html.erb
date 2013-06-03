@@ -21,17 +21,8 @@
     <div id="error_explanation">
       <p><%= pluralize(@dictionary.errors.count, "error") %> prohibited new dictionary from being saved:</p>
       <ul>
-      <% @dictionary.errors.full_messages.each do |msg| %>
-        <%
-          # yes, i know, this solution quite sucks
-          # it was hard to figure out how to show custom messages without attribute's name
-
-          if msg == 'From has already been taken'
-        %>
-          <li>Specified dictionary exists.</li>
-        <% else %>
+      <% @dictionary.errors.each do |attr, msg| %>
           <li><%= msg %></li>
-        <% end %>
       <% end %>
       </ul>
     </div>

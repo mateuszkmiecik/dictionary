@@ -9,7 +9,6 @@ Dicto::Application.routes.draw do
     get :delete, :on => :member
   end
 
-
   match '/:from/:to/words/search', :to => 'words#search'
 
   scope '/:from/:to' do
