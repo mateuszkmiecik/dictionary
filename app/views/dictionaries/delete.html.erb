@@ -6,5 +6,5 @@
 	<b><%= @to %> &#x2192; <%= @from %></b>.</p>
 <p>
 	<%= link_to 'Yes, i want to delete them', @dictionary, :method => :delete, :id => 'confirm_deletion' %>
-	<%= link_to "No, i want to come back.", :back, :class => 'no-style' %>
+	<%= link_to "No, i want to come back.", dictionaries_path, :class => 'no-style' %>
 </p>

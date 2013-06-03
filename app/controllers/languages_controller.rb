@@ -35,8 +35,26 @@ class LanguagesController < ApplicationController
   end
 
   def destroy
-    Language.destroy params[:id]
-    redirect_to :back, :notice => 'Language has been deleted.'    
+    @dictionaries = Dictionary.where('"from" = ? OR "to" = ?', params[:id], params[:id])
+    if !@dictionaries.empty?
+      render :action => 'info'
+    else
+      Language.destroy params[:id]
+
+      t = Translation.where(:lang_id => params[:id])
+      t.each { |x| x.destroy }
+
+      w = Word.where(:lang_id => params[:id])
+      w.each { |x|
+        x.translations.each do |a|
+          a.destroy
+        end
+      }
+
+      w.each {|x| x.destroy}
+
+      redirect_to :back, :notice => 'Language has been deleted.'  
+    end      
   end
 
 end

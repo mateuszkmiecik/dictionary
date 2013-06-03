@@ -3,6 +3,8 @@
 
 		<h3><%= link_to '', '/'+@from.short+'/'+@to.short, :class => 'icon-reply pushed-out', :title => 'come back to dictionary' %>
 			<%= @from.name %> &#x2192; <%= @to.name %>
+
+			<%= link_to "Add new word", new_word_path, :class => 'right' %>
 		</h3>
 		<% flash.each do |name, message| %>
 				<div id="flash_<%= name %>">

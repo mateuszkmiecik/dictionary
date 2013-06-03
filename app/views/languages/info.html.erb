@@ -1,0 +1,16 @@
+<div class="row">
+	<div>
+		<h2 class="bg">Warning</h2>
+		<p>You want to delete language <b><%= Language.find(params[:id]).name %></b>, but firstly you should delete dictionaries:</p>
+		<ul class="list">
+			<% @dictionaries.each do |d| %>
+				<%
+					from = Language.find(d.from)
+					to = Language.find(d.to)
+				%>
+				<li><%= from.name %> &#x2192; <%= to.name %> <%= link_to ' ', delete_dictionary_path(d), :class => 'icon-trash', :id => 'delete_' + d.id.to_s %> </li>
+			<% end %>
+		</ul>
+		<p><%= link_to 'Go to dictionaries', dictionaries_path %></p>
+	</div>
+</div>
