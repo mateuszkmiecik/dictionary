@@ -35,7 +35,7 @@ describe "Dictionaries" do
       select "german", :from => 'dictionary_from'
       select "polish", :from => 'dictionary_to'
 
-      click_button "Create Dictionary"
+      click_button "Add dictionary"
       current_path.should == dictionaries_path
       page.should have_content 'Dictionaries have been created.'
 
@@ -50,7 +50,7 @@ describe "Dictionaries" do
       select "german", :from => 'dictionary_from'
       select "german", :from => 'dictionary_to'
 
-      click_button "Create Dictionary"
+      click_button "Add dictionary"
       current_path.should == dictionaries_path
 
       page.should have_content 'Languages cannot be the same.'
@@ -63,13 +63,13 @@ describe "Dictionaries" do
       select "german", :from => 'dictionary_from'
       select "polish", :from => 'dictionary_to'
 
-      click_button "Create Dictionary"
+      click_button "Add dictionary"
 
       visit new_dictionary_path
       select "polish", :from => 'dictionary_from'
       select "german", :from => 'dictionary_to'
 
-      click_button "Create Dictionary"
+      click_button "Add dictionary"
 
       page.should have_content "Specified dictionary exists."
 
@@ -89,7 +89,7 @@ describe "Dictionaries" do
       select "german", :from => 'dictionary_from'
       select "polish", :from => 'dictionary_to'
 
-      click_button "Create Dictionary"
+      click_button "Add dictionary"
 
       visit dictionaries_path
       click_link "delete_2"

@@ -2,11 +2,6 @@ class TranslationsController < ApplicationController
 
 	before_filter :parse_fromto
 
-	def parse_fromto
-	  @from = Language.where(:short => params[:from]).limit(1)[0]
-	  @to = Language.where(:short => params[:to]).limit(1)[0]
-	end
-
 	def create
 		@word = Word.find params[:word_id]
 		@translation = Translation.create params[:translation]
@@ -55,6 +50,13 @@ class TranslationsController < ApplicationController
 
 		@translation.destroy
 		redirect_to word_path(:id => @word.id), :notice => 'Translation has been deleted.'
+	end
+
+	private
+
+	def parse_fromto
+	  @from = Language.where(:short => params[:from]).limit(1)[0]
+	  @to = Language.where(:short => params[:to]).limit(1)[0]
 	end
 
 end

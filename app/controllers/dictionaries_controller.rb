@@ -36,12 +36,6 @@ class DictionariesController < ApplicationController
 		@to = Language.find(@dictionary.to).name		
 	end
 
-	def get_deletion
-		@deletion = Dictionary.find(params[:id])
-		@second = Dictionary.where(:from => @deletion.to, :to => @deletion.from).limit(1)		
-	end
-
-
 	def destroy
 		Dictionary.destroy params[:id]		
 		Dictionary.destroy @second[0].id
@@ -58,6 +52,13 @@ class DictionariesController < ApplicationController
 			d.save
 		end
 		render :nothing => true
+	end
+
+	private
+
+	def get_deletion
+		@deletion = Dictionary.find(params[:id])
+		@second = Dictionary.where(:from => @deletion.to, :to => @deletion.from).limit(1)		
 	end
 	
 end

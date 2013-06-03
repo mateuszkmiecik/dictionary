@@ -4,17 +4,6 @@ class WordsController < ApplicationController
 
   before_filter :check_languages
 
-  def check_languages
-    if params[:from] == params[:to]
-      redirect_to root_path
-    end    
-  end
-
-  def parse_fromto
-    @from = Language.where(:short => params[:from]).limit(1)[0]
-    @to = Language.where(:short => params[:to]).limit(1)[0]
-  end
-
   def index
     @words = Word.where(:lang_id => @from.id).order("words.text ASC")
   end
@@ -79,6 +68,20 @@ class WordsController < ApplicationController
     @words = Word.where("text LIKE ? and lang_id = ?", "%#{params[:search]}%", @from.id)
     @translations = Translation.where("text LIKE ? and lang_id = ?", "%#{params[:search]}%", @to.id)
     
+  end
+
+
+  private
+
+  def check_languages
+    if params[:from] == params[:to]
+      redirect_to root_path
+    end    
+  end
+
+  def parse_fromto
+    @from = Language.where(:short => params[:from]).limit(1)[0]
+    @to = Language.where(:short => params[:to]).limit(1)[0]
   end
   
 end

@@ -8,6 +8,10 @@
 			<%= link_to "Add new word", new_word_path, :class => 'right' %>
 		</h3>
 
+		<% if @words.empty? && @translations.empty? %>
+			<p class="center_info">No search results.</p>
+		<% end %>
+
 		<% @words.each do |w| %>
 			<%
 				w.translations.each do |wt|

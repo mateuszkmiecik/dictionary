@@ -14,7 +14,7 @@ $(function(){
 	});
 
 	if($('#flash_notice').length > 0){
-		setTimeout(noticeClose, 3000);
+		setTimeout(noticeClose, 5000);
 	}
 
 	$('#menuicon').click(function(e){ e.preventDefault(); });

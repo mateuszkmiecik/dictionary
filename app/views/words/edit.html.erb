@@ -10,3 +10,14 @@
 		<% end %>
 	</div>
 </div>
+
+<% if @word.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@word.errors.count, "error") %> prohibited new word from being saved:</p>
+      <ul>
+      	<% @word.errors.each do |attr, msg| %>
+	      	<li id="error_<%= attr %>"> <%= msg %></li>
+      	<% end %>
+      </ul>
+    </div>
+  <% end %>

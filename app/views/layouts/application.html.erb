@@ -6,6 +6,10 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <%= javascript_include_tag "application", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js", "main" %>
   <%= csrf_meta_tags %>
+  <% if params[:controller] == 'words' %>
+  	<%= #javascript_include_tag "search"
+  	%>
+  <% end %>
 
   <%= yield :js %>
   <style type="text/css"><%= yield :css %></style>
@@ -40,18 +44,22 @@
 			<div class="left">
 				<%= link_to content_tag('i', ' ', :class => 'icon-cog'), dictionaries_path, :class => 'action' %>
 				<% if dictos.empty? %>
-					No dictionaries found.
+					The are no dictionaries.
+				<% elsif langs.length == 1 %>
+					There is 1 dictionary.
 				<% else %>
-					<%= pluralize(dictos.count, 'dictionary') %> found.
+					There are <%= pluralize(dictos.count, 'dictionary') %>.
 				<% end %>
 				
 			</div>
 
 			<div class="right">
 				<% if langs.empty? %>
-					No languages found.
+					There are no languages.
+				<% elsif langs.length == 1 %>
+					There is <%= pluralize(langs.count, 'language') %>.
 				<% else %>
-					<%= pluralize(langs.count, 'language') %> found.
+					There are <%= pluralize(langs.count, 'language') %>.
 				<% end %>
 				<%= link_to content_tag('i', ' ', :class => 'icon-cog'), languages_path, :class => 'action' %>
 			</div>

@@ -1,16 +1,22 @@
 <div class="row">
 	<div>
 
-		<h2 class="bg">Edit translation</h2>
+		<h2 class="bg">Edit translation  <span class="desc"><%= @from.name %> &#x2192; <%= @to.name %></span></h2>
 
-		<%= form_for( @translation, :url => word_translation_path(:word_id => @word.id) ) do |f| %>
+		
 
-			<%= f.hidden_field :lang_id, :value => @to.id %>
-			<%= f.hidden_field :word_id, :value => @word.id %>
+			<div class="word"><%= @word.text %></div>
 
-			<div><%= f.text_field :text, :placeholder => 'translation' %></div>
-			<div><%= f.text_area :desc, :placeholder => 'description' %></div>
-			<div><%= f.submit "Edit translation" %></div>
+			<div class="translations">
+				<%= form_for( @translation, :url => word_translation_path(:word_id => @word.id) ) do |f| %>
+
+				<%= f.hidden_field :lang_id, :value => @to.id %>
+				<%= f.hidden_field :word_id, :value => @word.id %>
+
+				<div><%= f.text_field :text, :placeholder => 'translation' %></div>
+				<div><%= f.text_area :desc, :placeholder => 'description' %></div>
+				<div><%= f.submit "Edit translation" %></div>
+
 
 		<% end %>
 		<% if @translation.errors.any? %>
@@ -23,5 +29,6 @@
       </ul>
     </div>
   <% end %>
+  		</div>
 	</div>
 </div>

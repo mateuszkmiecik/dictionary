@@ -184,6 +184,10 @@ h1 {
 
 /*	CONTENT  */
 
+#content {
+	position: relative;
+}
+
 #content p {
 	padding: 20px;
 	margin-bottom: 20px;
@@ -683,6 +687,7 @@ div#error_explanation {
 	border-radius: 5px;
 	height: 60px;
 	line-height: 60px;
+	background: #fff;
 	position: relative;
 
 	i.icon-info {
@@ -742,5 +747,16 @@ div#error_explanation {
 		&:hover {
 			background: #eee;
 		}
+	}
+}
+
+p.center_info {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 0.9em;
+	color: #888;
+
+	i {
+		color: #333;
 	}
 }
