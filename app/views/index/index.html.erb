@@ -25,11 +25,7 @@
 	<% end %>
 <% end %>
 
-<% if @languages.empty? %>
-	<%= render :partial => "nolang" %>
-<% elsif @languages.length == 1 %>
-	<%= render :partial => "onelang" %>
-<% end %>
+
 
 <div class="row">
 	<% if !@dictionaries.empty? %>
@@ -56,6 +52,15 @@
 		</ul>
 
 		<p class="center_info"><i class="icon-sort"></i> &ndash; use it to reorder your dictionaries by simply clicking and dragging it to desired place</p>
+	<% else %>
+
+		<% if @languages.empty? %>
+			<%= render :partial => "nolang" %>
+		<% elsif @languages.length == 1 %>
+			<%= render :partial => "onelang" %>
+		<% else %>
+			<p>Add your first dictionary! <%= link_to 'Add dictionary', new_dictionary_path, :class => 'right' %> </p>
+		<% end %>
 	
 	<% end %>
 
