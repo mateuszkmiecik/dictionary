@@ -4,42 +4,35 @@ $.ajaxSetup ({
 });
 $(function() {
 
-	var searching = false, query;
+	var searching = false, query, height;
+	$('#content').wrap('<div class="fake"></div>');
+	height = $('.fake').height();
+	console.log(height);
 
 	$('#search').keyup(function(){
 		query = $('#search').val();
 		searching = true;
-		$('#content').slideUp(400, function(){
+		if($('.loader').length == 0){
+			$('<p class="loader"><i class="icon-spinner icon-spin icon-large""></i></p>').prependTo('.fake');
+		}
+		$('#content').fadeOut(200, function(){
+			$('.fake').height(height);
 			$(this).children().remove();
-			$(this).wrap('<div class="fake"></div>');
 			$(this).remove();
-			$('.fake').load(window.location.pathname+'/search #content', {search: query}, showContent());
+			$('.fake').load(
+					window.location.pathname+'/search #content',
+					{search: query},
+					function(){
+						height = $('#content').height();
+						$('#content').hide();
+						$('.fake').animate({
+							'height': height
+						}, 300, function () {
+							$('#content').fadeIn(300);
+						});
+					}
+				);
 		});
 	});
-
-	var showContent = function(){
-		$('.fake').hide();
-		$('.fake').slideDown(300);
-	}
-
-	// $('#search').bind({
-	// 	'input' : function () {
-	// 		searching = true;
-	// 		query = $('#search').val();
-
-	// 			$('#content *').fadeOut(400, function(){
-	// 				$.ajax({
-	// 					url: window.location.pathname+'/search',
-	// 					data: { search: query },
-	// 					success: function(data){
-	// 						var page = $.parseHTML(data);
-	// 						var content = $(page).children('#content').html();
-	// 						console.log(content);
-	// 						$('#content').html(content);
-	// 					}
-	// 				})
-	// 			});
-	// 	}
-	// });
 
 });
