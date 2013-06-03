@@ -20,6 +20,10 @@
 	</div>
 </div>
 
+<% if @words.empty? %>
+	<p class="center_info">No words found in this dictionary.</p>
+<% end %>
+
 <% @words.each do |w| %>
 	<%= render :partial => 'single', :locals => { :word => w } %>
 <% end %>

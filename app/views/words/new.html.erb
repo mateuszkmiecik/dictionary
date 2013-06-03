@@ -4,7 +4,7 @@
 
 		<%= form_for @word do |f| %>
 			<%= f.hidden_field :lang_id, :value => @from.id %>
-			<%= f.text_field :text, :placeholder => 'new word' %>
+			<%= f.text_field :text, :placeholder => 'new word', :tabindex => 1 %>
 			<%= f.submit "Add word" %>
 		<% end %>
 	</div>

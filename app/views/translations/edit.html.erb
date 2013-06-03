@@ -13,8 +13,8 @@
 				<%= f.hidden_field :lang_id, :value => @to.id %>
 				<%= f.hidden_field :word_id, :value => @word.id %>
 
-				<div><%= f.text_field :text, :placeholder => 'translation' %></div>
-				<div><%= f.text_area :desc, :placeholder => 'description' %></div>
+				<div><%= f.text_field :text, :placeholder => 'translation', :tabindex => 1 %></div>
+				<div><%= f.text_area :desc, :placeholder => 'description', :tabindex => 2 %></div>
 				<div><%= f.submit "Edit translation" %></div>
 
 

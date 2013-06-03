@@ -22,7 +22,7 @@
 			<h1><%=link_to 'Dictionario', root_path %></h1>
 
 			<div class="utils">
-				<% if params[:controller] == 'words' %>
+				<% if params[:controller] == 'words' && ( params[:action] == 'index' || params[:action] == 'search') %>
 					<%= form_tag search_words_path do |f| %>
 						<%= text_field_tag 'search', params[:search], :placeholder => 'Search' %>
 					<% end %>
