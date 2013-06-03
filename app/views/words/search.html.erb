@@ -1,5 +1,24 @@
 <div class="row">
 	<div>
+
+		<% @words.each do |w| %>
+
+		<%
+			w.translations.each do |wt|
+				if @translations.include?(wt)
+					@translations.delete_if {|x| x == wt }  
+				end
+			end
+		%>
+		<% end %>
+
+		<%
+			@translations.each do |t|
+				if t.word.lang_id != @from.id
+					@translations.delete_if {|x| x == t }  
+				end
+			end
+		%>
 		
 		
 		<h3><%= link_to '', '/'+@to.short+'/'+@from.short, :class => 'icon-exchange pushed-out', :title => 'switch languages' %>
@@ -13,13 +32,7 @@
 		<% end %>
 
 		<% @words.each do |w| %>
-			<%
-				w.translations.each do |wt|
-					if @translations.include?(wt)
-						@translations.delete_if {|x| x == wt }  
-					end
-				end
-			%>
+			
 			<%= render :partial => 'words/single', :locals => { :word => w } %>
 
 		<% end %>
