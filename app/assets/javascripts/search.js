@@ -9,7 +9,7 @@ $(function() {
 	height = $('.fake').height();
 	console.log(height);
 
-	$('#search').keyup(function(){
+	$('#search').bind('input', function(){
 		query = $('#search').val();
 		searching = true;
 		if($('.loader').length == 0){
